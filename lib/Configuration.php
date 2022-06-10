@@ -1,6 +1,6 @@
 <?php
 
-namespace FintechScore\Simulacion\MX\Client;
+namespace FintechScoreSimulacion\Client;
 
 class Configuration
 {
@@ -16,9 +16,9 @@ class Configuration
     
     protected $password = '';
     
-    protected $host = '';
+    protected $host = 'https://services.circulodecredito.com.mx';
     
-    protected $userAgent = 'FintechscoreClientPhp-Codegen/1.0.0/php';
+    protected $userAgent = 'FintechScoreSimulacion-Codegen/1.0.0/php';
     
     protected $debug = false;
     
@@ -159,10 +159,10 @@ class Configuration
     
     public static function toDebugReport()
     {
-        $report  = 'PHP SDK (FintechScore\Simulacion\MX\Client) Debug Report:' . PHP_EOL;
+        $report  = 'PHP SDK (FintechScoreSimulacion\Client) Debug Report:' . PHP_EOL;
         $report .= '    OS: ' . php_uname() . PHP_EOL;
         $report .= '    PHP Version: ' . PHP_VERSION . PHP_EOL;
-        $report .= '    OpenAPI Spec Version: 1.0.0' . PHP_EOL;
+        $report .= '    OpenAPI Spec Version: 1.1.0' . PHP_EOL;
         $report .= '    Temp Folder Path: ' . self::getDefaultConfiguration()->getTempFolderPath() . PHP_EOL;
         return $report;
     }

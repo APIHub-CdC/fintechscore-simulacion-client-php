@@ -5,20 +5,20 @@ namespace FintechScoreSimulacion\Client\Model;
 use \ArrayAccess;
 use \FintechScoreSimulacion\Client\ObjectSerializer;
 
-class Peticion implements ModelInterface, ArrayAccess
+class PeticionFolio implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
     
-    protected static $RCCPMModelName = 'Peticion';
+    protected static $RCCPMModelName = 'PeticionFolio';
     
     protected static $RCCPMTypes = [
         'folio_otorgante' => 'string',
-        'persona' => '\FintechScoreSimulacion\Client\Model\Persona'
+        'folio_consulta' => 'string'
     ];
     
     protected static $RCCPMFormats = [
         'folio_otorgante' => null,
-        'persona' => null
+        'folio_consulta' => null
     ];
     
     public static function RCCPMTypes()
@@ -33,17 +33,17 @@ class Peticion implements ModelInterface, ArrayAccess
     
     protected static $attributeMap = [
         'folio_otorgante' => 'folioOtorgante',
-        'persona' => 'persona'
+        'folio_consulta' => 'folioConsulta'
     ];
     
     protected static $setters = [
         'folio_otorgante' => 'setFolioOtorgante',
-        'persona' => 'setPersona'
+        'folio_consulta' => 'setFolioConsulta'
     ];
     
     protected static $getters = [
         'folio_otorgante' => 'getFolioOtorgante',
-        'persona' => 'getPersona'
+        'folio_consulta' => 'getFolioConsulta'
     ];
     
     public static function attributeMap()
@@ -73,7 +73,7 @@ class Peticion implements ModelInterface, ArrayAccess
     public function __construct(array $data = null)
     {
         $this->container['folio_otorgante'] = isset($data['folio_otorgante']) ? $data['folio_otorgante'] : null;
-        $this->container['persona'] = isset($data['persona']) ? $data['persona'] : null;
+        $this->container['folio_consulta'] = isset($data['folio_consulta']) ? $data['folio_consulta'] : null;
     }
     
     public function listInvalidProperties()
@@ -82,8 +82,8 @@ class Peticion implements ModelInterface, ArrayAccess
         if ($this->container['folio_otorgante'] === null) {
             $invalidProperties[] = "'folio_otorgante' can't be null";
         }
-        if ($this->container['persona'] === null) {
-            $invalidProperties[] = "'persona' can't be null";
+        if ($this->container['folio_consulta'] === null) {
+            $invalidProperties[] = "'folio_consulta' can't be null";
         }
         return $invalidProperties;
     }
@@ -104,14 +104,14 @@ class Peticion implements ModelInterface, ArrayAccess
         return $this;
     }
     
-    public function getPersona()
+    public function getFolioConsulta()
     {
-        return $this->container['persona'];
+        return $this->container['folio_consulta'];
     }
     
-    public function setPersona($persona)
+    public function setFolioConsulta($folio_consulta)
     {
-        $this->container['persona'] = $persona;
+        $this->container['folio_consulta'] = $folio_consulta;
         return $this;
     }
     

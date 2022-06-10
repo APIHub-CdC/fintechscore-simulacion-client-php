@@ -1,27 +1,27 @@
 <?php
 
-namespace FintechScore\Simulacion\MX\Client\Model;
+namespace FintechScoreSimulacion\Client\Model;
 
 use \ArrayAccess;
-use \FintechScore\Simulacion\MX\Client\ObjectSerializer;
+use \FintechScoreSimulacion\Client\ObjectSerializer;
 
 class Persona implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
     
-    protected static $FintechScoreModelName = 'Persona';
+    protected static $RCCPMModelName = 'Persona';
     
-    protected static $FintechScoreTypes = [
+    protected static $RCCPMTypes = [
         'apellido_paterno' => 'string',
         'apellido_materno' => 'string',
         'primer_nombre' => 'string',
         'segundo_nombre' => 'string',
         'fecha_nacimiento' => 'string',
         'rfc' => 'string',
-        'domicilio' => '\FintechScore\Simulacion\MX\Client\Model\Domicilio'
+        'domicilio' => '\FintechScoreSimulacion\Client\Model\Domicilio'
     ];
     
-    protected static $FintechScoreFormats = [
+    protected static $RCCPMFormats = [
         'apellido_paterno' => null,
         'apellido_materno' => null,
         'primer_nombre' => null,
@@ -31,14 +31,14 @@ class Persona implements ModelInterface, ArrayAccess
         'domicilio' => null
     ];
     
-    public static function FintechScoreTypes()
+    public static function RCCPMTypes()
     {
-        return self::$FintechScoreTypes;
+        return self::$RCCPMTypes;
     }
     
-    public static function FintechScoreFormats()
+    public static function RCCPMFormats()
     {
-        return self::$FintechScoreFormats;
+        return self::$RCCPMFormats;
     }
     
     protected static $attributeMap = [
@@ -88,7 +88,7 @@ class Persona implements ModelInterface, ArrayAccess
     
     public function getModelName()
     {
-        return self::$FintechScoreModelName;
+        return self::$RCCPMModelName;
     }
     
     
