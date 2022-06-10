@@ -1,6 +1,6 @@
 <?php
 
-namespace FintechScore\Simulacion\MX\Client;
+namespace FintechScoreSimulacion\Client;
 
 class ObjectSerializer
 {
@@ -23,19 +23,19 @@ class ObjectSerializer
             return $data;
         } elseif (is_object($data)) {
             $values = [];
-            $formats = $data::FintechScoreFormats();
-            foreach ($data::FintechScoreTypes() as $property => $FintechScoreType) {
+            $formats = $data::RCCPMFormats();
+            foreach ($data::RCCPMTypes() as $property => $RCCPMType) {
                 $getter = $data::getters()[$property];
                 $value = $data->$getter();
                 if ($value !== null
-                    && !in_array($FintechScoreType, ['DateTime', 'bool', 'boolean', 'byte', 'double', 'float', 'int', 'integer', 'mixed', 'number', 'object', 'string', 'void'], true)
-                    && method_exists($FintechScoreType, 'getAllowableEnumValues')
-                    && !in_array($value, $FintechScoreType::getAllowableEnumValues(), true)) {
-                    $imploded = implode("', '", $FintechScoreType::getAllowableEnumValues());
-                    throw new \InvalidArgumentException("Invalid value for enum '$FintechScoreType', must be one of: '$imploded'");
+                    && !in_array($RCCPMType, ['DateTime', 'bool', 'boolean', 'byte', 'double', 'float', 'int', 'integer', 'mixed', 'number', 'object', 'string', 'void'], true)
+                    && method_exists($RCCPMType, 'getAllowableEnumValues')
+                    && !in_array($value, $RCCPMType::getAllowableEnumValues(), true)) {
+                    $imploded = implode("', '", $RCCPMType::getAllowableEnumValues());
+                    throw new \InvalidArgumentException("Invalid value for enum '$RCCPMType', must be one of: '$imploded'");
                 }
                 if ($value !== null) {
-                    $values[$data::attributeMap()[$property]] = self::sanitizeForSerialization($value, $FintechScoreType, $formats[$property]);
+                    $values[$data::attributeMap()[$property]] = self::sanitizeForSerialization($value, $RCCPMType, $formats[$property]);
                 }
             }
             return (object)$values;
@@ -165,13 +165,13 @@ class ObjectSerializer
         } else {
             $discriminator = $class::DISCRIMINATOR;
             if (!empty($discriminator) && isset($data->{$discriminator}) && is_string($data->{$discriminator})) {
-                $subclass = '\FintechScore\Simulacion\MX\Client\Model\\' . $data->{$discriminator};
+                $subclass = '\FintechScoreSimulacion\Client\Model\\' . $data->{$discriminator};
                 if (is_subclass_of($subclass, $class)) {
                     $class = $subclass;
                 }
             }
             $instance = new $class();
-            foreach ($instance::FintechScoreTypes() as $property => $type) {
+            foreach ($instance::RCCPMTypes() as $property => $type) {
                 $propertySetter = $instance::setters()[$property];
                 if (!isset($propertySetter) || !isset($data->{$instance::attributeMap()[$property]})) {
                     continue;

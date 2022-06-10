@@ -1,7 +1,7 @@
 <?php
 
-namespace FintechScore\Simulacion\MX\Client\Model;
-use \FintechScore\Simulacion\MX\Client\ObjectSerializer;
+namespace FintechScoreSimulacion\Client\Model;
+use \FintechScoreSimulacion\Client\ObjectSerializer;
 
 class CatalogoPais
 {

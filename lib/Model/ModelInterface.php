@@ -1,15 +1,15 @@
 <?php
 
-namespace FintechScore\Simulacion\MX\Client\Model;
+namespace FintechScoreSimulacion\Client\Model;
 
 interface ModelInterface
 {
     
     public function getModelName();
     
-    public static function FintechScoreTypes();
+    public static function RCCPMTypes();
     
-    public static function FintechScoreFormats();
+    public static function RCCPMFormats();
     
     public static function attributeMap();
     

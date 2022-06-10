@@ -1,32 +1,32 @@
 <?php
 
-namespace FintechScore\Simulacion\MX\Client\Model;
+namespace FintechScoreSimulacion\Client\Model;
 
 use \ArrayAccess;
-use \FintechScore\Simulacion\MX\Client\ObjectSerializer;
+use \FintechScoreSimulacion\Client\ObjectSerializer;
 
 class Errores implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
     
-    protected static $FintechScoreModelName = 'Errores';
+    protected static $RCCPMModelName = 'Errores';
     
-    protected static $FintechScoreTypes = [
-        'errores' => '\FintechScore\Simulacion\MX\Client\Model\Error[]'
+    protected static $RCCPMTypes = [
+        'errores' => '\FintechScoreSimulacion\Client\Model\Error[]'
     ];
     
-    protected static $FintechScoreFormats = [
+    protected static $RCCPMFormats = [
         'errores' => null
     ];
     
-    public static function FintechScoreTypes()
+    public static function RCCPMTypes()
     {
-        return self::$FintechScoreTypes;
+        return self::$RCCPMTypes;
     }
     
-    public static function FintechScoreFormats()
+    public static function RCCPMFormats()
     {
-        return self::$FintechScoreFormats;
+        return self::$RCCPMFormats;
     }
     
     protected static $attributeMap = [
@@ -58,7 +58,7 @@ class Errores implements ModelInterface, ArrayAccess
     
     public function getModelName()
     {
-        return self::$FintechScoreModelName;
+        return self::$RCCPMModelName;
     }
     
     

@@ -45,19 +45,16 @@ Al iniciar sesión seguir los siguientes pasos:
 
 ### Paso 2. Capturar los datos de la petición
 
-Los siguientes datos a modificar se encuentran en **test/Api/ApiTest.php**
+Los siguientes datos a modificar se encuentran en **test/Api/FintechScoreSimulacionApiTest.php**
 
 Es importante contar con el setUp() que se encargará de inicializar la petición. Por tanto, se debe modificar la URL (**the_url**); y la API KEY (**your_x_api_key**), como se muestra en el siguiente fragmento de código:
 
 ```php
-public function setUp()
-{
-    $config = new Configuration();
-    $config->setHost('the_url');
-    $this->x_api_key = "your_x_api_key";
-    $client = new Client();
-    $this->apiInstance = new Instance($client,$config);
-}
+$config = new Configuration();
+        $config->setHost('url');
+        $this->x_api_key = "your-apikey";
+        $client = new Client();
+        $this->apiInstance = new Instance($client,$config);
 ```
 
 Para la petición se deberá modificar el siguiente fragmento de código con los datos correspondientes:
@@ -66,43 +63,64 @@ Para la petición se deberá modificar el siguiente fragmento de código con los
 
 ```php
 /**
-* Este método será ejecutado en la prueba ubicado en path/to/repository/test/Api/ApiTest.php
+* Este método será ejecutado en la prueba ubicado en path/to/repository/test/Api/FintechScoreSimulacionApiTest.php
 */
 public function testGetReporte()
 {
-    try {
+     try{
+                $request = new Peticion();
+                $persona = new Persona();
+                $domicilio = new Domicilio();
 
-        $body = new Peticion();
-        $persona = new Persona();
-        $domicilio = new Domicilio(); 
-        $catalogoEstados = new CatalogoEstados(); 
-        $catalogoPais = new CatalogoPais();
+                $request->setFolioOtorgante("20210304");
 
-        $domicilio->setDireccion("AV 535 84");
-        $domicilio->setCiudad( "CIUDAD DE MEXICO");
-        $domicilio->setColoniaPoblacion("SAN JUAN DE ARAGON 1RA SECC");
-        $domicilio->setDelegacionMunicipio("GUSTAVO A MADERO");
-        $domicilio->setCP("07969");
-        $domicilio->setEstado($catalogoEstados::CDMX);
-        $domicilio->setPais($catalogoPais::MX);
-        
-        $persona->setPrimerNombre("PABLO");
-        $persona->setSegundoNombre("ANTONIO");
-        $persona->setApellidoPaterno("PRUEBA");
-        $persona->setApellidoMaterno("ALVAREZ");
-        $persona->setFechaNacimiento("1985-03-16");
-        $persona->setRFC("PUAP850316MI1");
-        $persona->setDomicilio($domicilio);
+                $persona->setApellidoPaterno("SESENTAYDOS");
+                $persona->setApellidoMaterno("PRUEBA");
+                $persona->setPrimerNombre("JUAN");
+                $persona->setSegundoNombre("JUAN");
+                $persona->setFechaNacimiento("1965-08-09");
+                $persona->setRFC("SEPJ650809JG1");
+                
+                $domicilio->setDireccion("PASADISO ENCONTRADO 58");
+                $domicilio->setColoniaPoblacion("MONTEVIDEO");
+                $domicilio->setDelegacionMunicipio("GUSTAVO A MADERO");
+                $domicilio->setCiudad("CIUDAD DE MÉXICO");
+                $domicilio->setEstado("CDMX");
+                $domicilio->setCP("07730");
+                $domicilio->setPais("MX");
+            
+                $persona->setDomicilio($domicilio);
+                $request->setPersona($persona);
+                $response = $this->apiInstance->getReporte($this->x_api_key, $request);
+                $this->assertNotNull($response );
+                print_r($response);
 
-        $body->setFolioOtorgante("20210307");
-        $body->setPersona($persona);
-
-        $result = $this->apiInstance->getReporte($this->x_api_key, $body);
-        print_r($result);
-    } catch (ApiException | Exception $e) {
-        echo 'Exception when calling ApiTest->testGetReporte: ', $e->getMessage(), PHP_EOL;
-    }        
+        }
+ 
+        catch(Exception $e){
+            echo 'Exception when calling ApiTest->testGetReporte: ', $e->getMessage(), PHP_EOL;
+        }
+      
 }
+
+/**
+*Metodo con folios del solicitante
+* Este método será ejecutado en la prueba ubicado en path/to/repository/test/Api/FintechScoreSimulacionApiTest.php
+*/
+    public function testGetReporteFolio()
+    {
+     try{
+                $request = new PeticionFolio();
+                $request->setFolioOtorgante("20210301");
+                $request->setFolioConsulta("12345678");
+                $response = $this->apiInstance->getReporteFolio($this->x_api_key, $request);
+                $this->assertNotNull($response );
+                print_r($response);
+        }
+            catch(Exception $e){
+                echo 'Exception when calling ApiTest->testGetReporteFolio: ', $e->getMessage(), PHP_EOL;
+            }
+    }
 ```
 
 ## Pruebas unitarias
